@@ -16,11 +16,12 @@ def green(text):
     return Fore.GREEN + text + Fore.RESET
 
 def make_request(url, count=count()):
+    start_time = time.time()
     while True:
         code = requests.get(url).status_code
 
         if code == 200:
-            print(green(f"[+] request successful; total requests: {str(next(count) + 1)}"))
+            print(green(f"[+] request successful; total requests: {str(next(count) + 1)} in {round(time.time() - start_time)} seconds"))
 
         elif code == 404:
             print(green("[!] request failed: page not found"))
